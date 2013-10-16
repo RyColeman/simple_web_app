@@ -30,6 +30,8 @@ __We are somewhere near step #6__
 
 There are a lot of great tools for building a website without knowing (or wrestling) with the quirks of HTML and CSS.  If you want to learn HTML/CSS/Javascript, Jonathan knows too much about these technologies (and teaching them) so please bug him.  If you do not care too much for HTML, there are some great graphical tools below for making a quick prototype of a front end for a site.
 
+![asset/img](asset/Schibsted.115.png)
+
 #### Web Interface Tools:
 
 * [Easel.io: Browser base dinterface builder](https://www.easel.io/)
@@ -88,6 +90,16 @@ Test your API locally on your laptop before sending it up to the cloud.  Make su
 5. For the POSTing of new data, you will accept user input in a somewhat raw form (text, URL, HTML, etc.).  In your web app you will need to scrub and transform this data to get it into a suitable form for classification.  Remember the layer cake!
 
 ![asset/Datado.087.png](asset/Datado.087.png)
+
+6. Once you have the new input data in a properly vectorized form, you can run it through your model.  Write code in your Flask route to read in data from the database contianing the model parameters.  Predict the new label for the user input.  Return this in a [Response](http://flask.pocoo.org/docs/api/#flask.Response) object as JSON.
+
+7. Now that you know your model works locally on your laptop, it is time to send it to the cloud!  Follow the Heroku [docs](https://devcenter.heroku.com/articles/getting-started-with-python) to create a free account and deploy an application (or deploy to EC2 on Amazon if you are comfortable with it).
+
+8. You application will not have an interface (yet).  Here you can build one using some of the tools listed above.  Or you can leave your app simply as an API.  Once deployed to the cloud, use `curl` (or another HTTP library) to POST data to your application and hopefully it responds with a label/recommendation/etc.
+
+__WARNING: Memory might be an issue with Heroku or other free hosting.  If you need more, I would recommend just using EC2__
+
+9. $$$
 
 ## References
 
