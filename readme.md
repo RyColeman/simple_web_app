@@ -65,6 +65,7 @@ __NOTE: You do not need to build an application with a front-end.  You can simpl
 1. First read through this 'hello world' of Flask: [ReSTful API](http://blog.luisrei.com/articles/flaskrest.html)
 
 2. Now hopefully you are a bit more familiar with the way the web works.  For our application there are a few requirements:
+
 * Model training (offline)
 * User input (i.e. article to classify)
 * Prediction/analysis
@@ -72,11 +73,13 @@ __NOTE: You do not need to build an application with a front-end.  You can simpl
 * Make it pretty?
 
 3. You may already have a trained model (or analyses) that you want to expose to the world via an API.  First we need to serialize our model parameters.  For Naive Bayes this means our CPTs and Prior table.  For the recommender it will be the similarity matrix.  For NMF you will have to run the algorithm everytime someone inputs data.  Serialize your parameters to a hosted database (this will allow you to access your model in the cloud):
+
 * [Heroku Postgres](https://addons.heroku.com/heroku-postgresql)
 * [MongoLab](https://mongolab.com/welcome/)
 * [EC2](http://aws.amazon.com/ec2/)
 
 4. Now that we have our model serialized, we are ready to start exposing it.  We will not worry about a front end right now.  We need to setup routes for our app.  We need:
+
 * POST -- user submits new data classify/recommend/etc., you return a label/recommendation/etc.
 * GET -- accept no data, simply return instructions for the API (routes list, data format, etc.) 
 
