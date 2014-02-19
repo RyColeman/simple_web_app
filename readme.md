@@ -64,6 +64,8 @@ You can choose to implement whatever you want for this mini-project but you will
 
 __NOTE: You do not need to build an application with a front-end.  You can simply build an API that exposes your model, i.e. `curl --data text="Awesome new article abou..." http://api.mymodel.com/bayes`__
 
+1. Play with a Machine Leearning API on Mashape.  This will let you know what type of abstraction to create
+2. 
 1. First read through this 'hello world' of Flask: [ReSTful API](http://blog.luisrei.com/articles/flaskrest.html)
 
 2. Now hopefully you are a bit more familiar with the way the web works.  For our application there are a few requirements:
