@@ -1,3 +1,5 @@
+# How to build a text classifier web app.  
+Today we are going to train a model, build a web interface that allows people to submit data, send that data to our model, make a prediction on it, then return the results.  
 
 # Step 1: Build and save your model.  
 1. Import pickle and use it to load the articles.pkl file.
@@ -27,8 +29,6 @@ https://wiki.python.org/moin/UsingPickle
 <br>
 <br>
 <br>
-
-
 
 
 # STEP 2: Setting up a flask app.
