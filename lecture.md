@@ -1,32 +1,244 @@
-## Overview -- Data Products: Web apps with [Flask](http://flask.pocoo.org/) (mini-project)
 
-Throughout the course we have been working with parsing data, tranforming text, building models, statistically validating our results, etc., etc., etc.  This has been much work and it might have been hard to see where it all was leading.  This sprint is designed to tie everything together, and after all, your best insight/model is only as good as your capacity to share it with the world!
+# Step 1: Build and save your model.  
+1. Import pickle and use it to load the articles.pkl file.
+https://wiki.python.org/moin/UsingPickle
 
-In this sprint we will be taking one of our previous analyses and getting one online for the world to interact with. 
+2. Set your text data column to `X`.
 
-### Example Data Science workflow:
-1. Run a scraper on an AWS EC2 instance to download NYT articles.
-2. Store these articles intermediately on the EC2 machine (possibly in a database) for some querying and processing.
-3. Batch upload a database dump to S3 periodically (as your database fills up).
-4. Use Mortar (with Pig or Python) to locally (on your laptop) experiment with your data and build a model on a subset of the data.
-5. Train a model at scale over all of your data located in S3 (Mortar runs in production on EC2 instances)
-6. Serialize your trained model parameters to MongoDB (or [DynamoDB](http://aws.amazon.com/dynamodb/)) using the proper Pig [adapters](http://help.mortardata.com/reference/loading_and_storing_data/MongoDB).
-7. (Optional) Deserialize trained model parameters from MongoDB into a Python [class](http://blog.yhathq.com/posts/image-classification-in-Python.html) (or [R function](http://blog.yhathq.com/posts/recommender-system-in-r.html)) and deploy to [yHat](http://yhathq.com/docs/quickstarts/py).
-8. Write a simple web application with [Flask](http://flask.pocoo.org/) to expose your model to the world. This is essential to capture input from users and also provide output from your model.  In our case, this could be as simple as a form to input a url to an article, and provide the user back with the section of the NYT it should belong to.
-9. If your model is deployed to yHat you simply use their API (and wrapper functions) and call it directly from the Flask application. Otherwise you need to query your MongoDB for your model parameters, deserialize these into a model class in Python (or R) and run your model's predict() function using the user's input.  Respond with the result of the prediction (HTTP response or HTML page).
-10. [Deploy](http://ryaneshea.com/lightweight-python-apps-with-flask-twitter-bootstrap-and-heroku) your web application to [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)
+3. Set your label data column to `y`.
 
-__We are somewhere near step #6__
+2. Initialize a multinomial naive bayes classifier.  
 
-## Reading
+3. Initialize a TFIDF vectorizer.
 
-* Agile Data: p. 38-54
-* [Pete Skomoroch: Data Exhaust](http://www.slideshare.net/pskomoroch/distilling-data-exhaust)
-* [Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)
+4. With your TFIDF vectorizer, fit and transform your `X` text data. Name the output `vectorized_X`
+.
+5.  Initialize your MultinomialNB model
+```clf = MultinomialNB()```
+
+6.  Fit your model with the `transformed_X` data, and the `y` labels.  
+
+7.  Export your fitted model using pickle.
+
+8.  Export your fitted vectorizer using pickle.
+
+9.  Take a mini break.
+---
+<br>
+<br>
+<br>
 
 
-## References
 
-* [API design with Flask](http://blog.luisrei.com/articles/rest.html)
-* [Flask + Bootstrap + Heroku](http://ryaneshea.com/lightweight-python-apps-with-flask-twitter-bootstrap-and-heroku)
-* [Flask-restful](http://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful)
+
+# STEP 2: Setting up a flask app.
+Before we do anything, we must pip install flask.
+`pip install flask`
+
+Here is a starter file with the most simple flask app ever. What it does is sets the route to the current directory, and returns 'Something'  
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return '<h1> Something </h1>'
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=6969, debug=True)
+```
+** Above is copy and pasteable flask starter code. In your browser go to **    http://0.0.0.0:6969/
+
+---
+
+<br>
+<br>
+### This is how to make a new page at a new address.
+This code makes a new page called `zack_rules`, and fills it up with content generated when that page is visited.
+You do this via the `@app.route()` method.  and put your function below it.  
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return '<h1> Something </h1>'
+
+
+# adding a new page
+@app.route('/zack_rules')
+def zack_rules():
+    content = ''
+    # generate some content
+    for i in xrange(1000):
+        content += 'zack rules! '
+    return '<h1> Yo: %s </h1>' % content
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=6969, debug=True)
+```
+**Above is copy and pasteable example of how you can pass a list of strings into your webpage onto a page named 'zack_rules'.**
+*http://0.0.0.0:6969/zack_rules*
+
+---
+<br>
+<br>
+<br>
+
+
+# STEP 3:  Basic human interaction.
+Feeding user submitted data from your webpage into python, doing something with that data (like feed it into your model and make a prediction), then returning an output to the web.
+
+So what we are doing here is using our flask app to interact with new information.  Here is the a simple example of how to setup a web page with a text box that the user can use to 'pass' information into your app.
+
+To setup this 'pipeline' we are going to  build an html form in in actual html inside of our python app.  The form looks like this.  
+```python
+from flask import Flask
+from flask import request
+app = Flask(__name__)
+
+# our home page
+@app.route('/')
+def index():
+    return '<h1> Something </h1>'
+
+
+# create a new page
+@app.route('/zack_rules')
+def zack_rules():
+    content = ''
+    for i in xrange(1000):
+        content += 'zack rules! '
+    return '<h1> Yo: %s </h1>' % content
+
+
+# create page with a form on it
+@app.route('/submission_page')
+def submission_page():
+    return '''
+    <form action="/word_counter" method='POST' >
+        <input type="text" name="user_input" />
+        <input type="submit" />
+    </form>
+    '''
+
+
+# create the page the form goes to
+@app.route('/word_counter', methods=['POST'] )
+def word_counter():
+    # get data from request form, the key is the name you set in your form
+    data = request.form['user_input']
+
+    # convert data from unicode to string
+    data = str(data)
+
+    # run a simple program that counts all the words
+    dict_counter = {}
+    for word in data.lower().split():
+        if word not in dict_counter:
+            dict_counter[word] = 1
+        else:
+            dict_counter[word] += 1
+    total_words = len(dict_counter)
+
+    # now return your results
+    return 'Total words is %i, <br> dict_counter is: %s' % (total_words, dict_counter)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=6969, debug=True)
+
+
+```
+
+
+
+
+
+
+
+<br>
+<br>
+# Extra:  Using Flask with Bootstrap.
+First we must install the dependencies.  
+`pip install flask-bootstrap`  
+`pip install flask-script`
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+How to structure your flask app directory.  
+```
+MyProject/
+|-- Python/
+|   |-- bin
+|   |   |-- app.py
+|   |-- docs
+|   |-- sessions
+|   |-- tests
+|   |   |-- project_tests.py
+|
+|-- static/
+|   |-- css/
+|   |   |-- bootstrap.css
+|   |   |-- bootstrap.min.css
+|   |   |-- my_custom_styles.css
+|   |-- js/
+|   |   |-- bootstrap.js
+|   |   |-- bootstrap.min.js
+|   |-- img/
+|   |   |-- glyphicon-halflings.png
+|   |   |-- glyphicon-halflings.png
+|   |-- fonts/
+|   |   |-- cool_font
+```
+This is how you install bootstrap for flask
+* dont forget to run pip install flask script bootsrap thing****
+Main HTTP methods:
+@app.route(methods=['see options below'])
+URL + method = unique response
+* Get
+    * reads whatever is at the end point.
+* Post
+* Put
+* Delete
