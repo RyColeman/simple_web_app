@@ -15,8 +15,15 @@ MyProject/
 <br>
 ## Step 1: Build your model
 Step 1 should take about *30min–60min*  
-`MyProject/my_app/build_model.py`
-1.  Build ANY text classifier model.  
+MyProject/
+|-- my_app/
+|   |-- app.py
+|   |-- **build_model.py**
+|   |-- data
+|   |   |-- my_data.csv
+|   |   |-- my_model.pkl
+|   |   |-- my_vectorizer.pkl
+1.  Build ANY text classifier model and place it into the **build_model.py** python file.  
 2.  Pickle and export your trained model and vectorizer into your data folder.  
 3. *See below if you want a step by step guide for this*
 
