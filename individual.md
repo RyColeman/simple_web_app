@@ -24,7 +24,18 @@ Step 1 should take about *30min–60min*
 ## Step 2:  Build your site
 Step 2 should take anywhere from 30min–120min  
 1.  Create an app.py file in your my_app folder  
-    **MyProject/my_app/app.py**
+
+```
+MyProject/
+|-- my_app/
+|   |-- **app.py**
+|   |-- build_model.py
+|   |-- data
+|   |   |-- my_data.csv
+|   |   |-- my_model.pkl
+|   |   |-- my_vectorizer.pkl
+```
+
 1.  Build a simple web homepage using flask.
 2.  Once you have setup a working homepage...
 3.  Build a submission_page that has an html form for the user to submit new text data.
