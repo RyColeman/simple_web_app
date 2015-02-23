@@ -33,37 +33,3 @@ if __name__ == '__main__':
 ```
 
 
-
-
-
-# How to build a text classifier web app.  
-Today we are going to train a model, build a web interface that allows people to submit data, send that data to our model, make a prediction on it, then return the results.  
-
-# Step 1: Build and save your model.  
-1. Import pickle and use it to load the articles.pkl file.
-https://wiki.python.org/moin/UsingPickle
-
-2. Set your text data column to `X`.
-
-3. Set your label data column to `y`.
-
-2. Initialize a multinomial naive bayes classifier.  
-
-3. Initialize a TFIDF vectorizer.
-
-4. With your TFIDF vectorizer, fit and transform your `X` text data. Name the output `vectorized_X`
-.
-5.  Initialize your MultinomialNB model
-```clf = MultinomialNB()```
-
-6.  Fit your model with the `transformed_X` data, and the `y` labels.  
-
-7.  Export your fitted model using pickle.
-
-8.  Export your fitted vectorizer using pickle.
-
-9.  Take a mini break.
----
-<br>
-<br>
-<br>
