@@ -44,13 +44,7 @@ MyProject/
 
 ---
 
-Run your app.py script and send us your apps address because you are done.  
-
-<br>
-<br>
-<br>
-
-###Step 1:  Step by step
+### Step 1:  Step by step
 
 1. Import pickle and use it to load the articles.pkl file.
 https://wiki.python.org/moin/UsingPickle
@@ -76,6 +70,3 @@ https://wiki.python.org/moin/UsingPickle
 
 9.  Take a mini break.
 ---
-<br>
-<br>
-<br>

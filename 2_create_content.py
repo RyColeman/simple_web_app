@@ -2,14 +2,14 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-# our home page
+# OUR HOME PAGE
 #============================================
 @app.route('/')
 def index():
     return '<h1> Something </h1>'
 
 
-# /zack_rules page  
+# /zack_rules PAGE 
 #============================================
 # Writes zack rules 1000 times then sends that string to html
 @app.route('/zack_rules')

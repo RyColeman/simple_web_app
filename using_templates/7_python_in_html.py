@@ -1,12 +1,10 @@
 from flask import Flask
-from flask import request
+from flask import render_template
 app = Flask(__name__)
 
-# OUR HOME PAGE
-#============================================
 @app.route('/')
 def index():
-    return '<h1> Something </h1>'
+    return render_template('python_in_html.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969, debug=True)
