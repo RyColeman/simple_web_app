@@ -1,7 +1,7 @@
 # Setting up a flask app.
 Before we do anything, we must pip install flask. `pip install flask`  
 
-Below is a starter file with the most simple flask app ever. What it does is sets the route to the current directory, and returns HTML code that says 'Something'  as the h1 header.
+Below is a starter file with the most simple flask app ever. What it does is sets the route to the current directory, and returns HTML code that says 'Something' as the h1 header.
 
 ```python
 from flask import Flask
