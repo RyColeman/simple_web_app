@@ -8,10 +8,6 @@ body {
     width: 10%;
     float:left;
 }
-p {
-    font-size: 100px;
-}
-
 
 .classname {
     transition:All 0.50s ease;

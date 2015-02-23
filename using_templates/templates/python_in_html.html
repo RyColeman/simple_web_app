@@ -1,12 +1,9 @@
 <!doctype html>
-<head>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='mystyles.css') }}">
-</head>
-
+<link rel=stylesheet type=text/css href="../static/mystyles.css">
 <body>
     {% for i in range(100) %}
         <div class="classname">
-            <p> I got {{ i }} problems. </p>
+            <p> {{ i }} </p>
         </div>
     {% endfor %}
 </body>
