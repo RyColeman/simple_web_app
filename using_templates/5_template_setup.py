@@ -9,8 +9,8 @@ def hello_world():
     df = df.set_index('Unnamed: 0')
     px = df['px'].values
     years = df['year'].values
-    x = zip(px,years)
-    return render_template('passing_variables_into_html.html', data=x )
+    mydata = zip(px,years)
+    return render_template('passing_variables_into_html.html', data=mydata )
 
 
 if __name__ == '__main__':
