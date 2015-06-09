@@ -5,14 +5,34 @@ Below is a starter file with the most simple flask app ever. What it does is set
 
 ```python
 from flask import Flask
+from flask import request
 app = Flask(__name__)
 
+# OUR HOME PAGE
+#============================================
 @app.route('/')
 def index():
-    return '<h1> Something </h1>'
+    return '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>title</title>
+    </head>
+
+  <body>
+    <!-- page content -->
+    <div>
+        This is where text can live or pics or go anything your little heart wishes to be done.
+    </div>
+  </body>
+
+</html>
+'''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969, debug=True)
+
 ```
 ** Above is copy and pasteable flask starter code. In your browser go to **    http://0.0.0.0:6969/
 
@@ -23,6 +43,7 @@ if __name__ == '__main__':
 ## This is how to make a new page at a new address.
 This code makes a new page called `zack_rules`, and fills it up with content generated when that page is visited.
 You do this via the `@app.route()` method.  and put your function below it.  
+
 ```python
 from flask import Flask
 app = Flask(__name__)

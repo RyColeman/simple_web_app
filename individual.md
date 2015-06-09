@@ -46,8 +46,7 @@ MyProject/
 
 ### Step 1:  Step by step
 
-1. Import pickle and use it to load the articles.pkl file.
-https://wiki.python.org/moin/UsingPickle
+1. Use the `articles.csv` file in the data folder to create a text classifier.
 
 2. Set your text data column to `X`.
 
@@ -68,5 +67,5 @@ https://wiki.python.org/moin/UsingPickle
 
 8.  Export your fitted vectorizer using pickle.
 
-9.  Take a mini break.
+9.  Take a break.
 ---
