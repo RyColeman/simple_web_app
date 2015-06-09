@@ -27,7 +27,7 @@ Step 2 should take anywhere from 30min–120min
 
 ```
 MyProject/
-|-- my_app/
+|-- my_app/pytho
 |   |-- **the_app.py**
 |   |-- build_model.py
 |   |-- data

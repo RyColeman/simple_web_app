@@ -13,6 +13,7 @@ def hello_world():
 def super_powers():
     df = pd.DataFrame( {'a': [1,2,3], 'b': [4,5,6] } )
     rng = np.random.random
+    
     return render_template('super_powers.html', df = df, numpy = rng )
 
 if __name__ == '__main__':

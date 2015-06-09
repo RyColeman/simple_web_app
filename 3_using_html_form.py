@@ -29,7 +29,6 @@ def word_counter():
     # convert data from unicode to string
     data = str(data)
 
-    ipdb.set_trace()
     # run a simple program that counts all the words
     dict_counter = {}
     for word in data.lower().split():

@@ -6,7 +6,7 @@
     <table border="1px solid black" style="width:300px">
         {% for i in range(100) %}
             <tr>
-                <td>{{ numpy() }}</td>
+                <td>{{ numpy()*255 }}</td>
                 <td>{{ numpy() * 10.0 }}</td>
             </tr>
         {% endfor %}
