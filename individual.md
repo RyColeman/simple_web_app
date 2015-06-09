@@ -5,7 +5,7 @@ Today we are going to train a model, build a web interface that allows people to
 ```
 MyProject/
 |-- my_app/
-|   |-- app.py
+|   |-- the_app.py
 |   |-- build_model.py
 |   |-- data
 |   |   |-- my_data.csv
@@ -23,12 +23,12 @@ Step 1 should take about *30min–60min*
 <br>
 ## Step 2:  Build your site
 Step 2 should take anywhere from 30min–120min  
-1.  Create an app.py file in your my_app folder  
+1.  Create an the_app.py file in your my_app folder  
 
 ```
 MyProject/
 |-- my_app/
-|   |-- **app.py**
+|   |-- **the_app.py**
 |   |-- build_model.py
 |   |-- data
 |   |   |-- my_data.csv

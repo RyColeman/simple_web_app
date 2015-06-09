@@ -2,22 +2,56 @@ from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-# OUR HOME PAGE
-#============================================
 @app.route('/')
-def index():
-    return '<h1> Something </h1>'
-
-
-# /zack_rules PAGE 
-#============================================
-# Writes zack rules 1000 times then sends that string to html
-@app.route('/zack_rules')
 def zack_rules():
     content = ''
     for i in xrange(1000):
         content += 'zack rules! '
     return '<h1> Yo: %s </h1>' % content
 
+
+@app.route('/rainbow_rules')
+def rainbow_rules():
+    colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8F00FF']
+    mydivs = ''
+    for i in xrange(33):
+        color_index = i % 6
+        element = '''
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="utf-8">
+                <title>title</title>
+            </head>
+
+          <body>
+            <!-- page content -->
+            <div style="background-color: %s; color: white; text-align: center;">
+                yolo
+            </div>
+          </body>
+
+        </html>
+
+        ''' % (colors[color_index])
+
+        mydivs += element
+        mydivs += '\n'
+    return mydivs
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969, debug=True)
+
+
+
+
+# @app.route('/rainbow_rules')
+# def rainbow_rules():
+#     colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8F00FF']
+#     mydivs = ''
+#     for i in xrange(33):
+#         color_index = i % 6
+#         element = '<div style="background-color: %s;"> yolo </div>' % colors[color_index]
+#         mydivs += element
+#         mydivs += '\n'
+#     return mydivs

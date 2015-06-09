@@ -61,27 +61,16 @@ So what we are doing here is using our flask app to interact with new informatio
 To setup this 'pipeline' we are going to  build an html form in in actual html inside of our python app.  The form looks like this.  
 
 ```python
+
 from flask import Flask
 from flask import request
 app = Flask(__name__)
 
-# our home page
-@app.route('/')
-def index():
-    return '<h1> Something </h1>'
 
-
-# create a new page
-@app.route('/zack_rules')
-def zack_rules():
-    content = ''
-    for i in xrange(1000):
-        content += 'zack rules! '
-    return '<h1> Yo: %s </h1>' % content
-
-
+# Form page to submit text
+#============================================
 # create page with a form on it
-@app.route('/submission_page')
+@app.route('/')
 def submission_page():
     return '''
     <form action="/word_counter" method='POST' >
@@ -91,9 +80,12 @@ def submission_page():
     '''
 
 
+# My word counter app
+#==============================================
 # create the page the form goes to
 @app.route('/word_counter', methods=['POST'] )
 def word_counter():
+
     # get data from request form, the key is the name you set in your form
     data = request.form['user_input']
 
@@ -115,4 +107,5 @@ def word_counter():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969, debug=True)
+
 ```
