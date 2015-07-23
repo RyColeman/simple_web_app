@@ -17,4 +17,4 @@ def super_powers():
     return render_template('super_powers.html', df = df, numpy = rng )
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7777, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)

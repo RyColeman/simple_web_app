@@ -37,7 +37,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6969, debug=True)
 
 ```
-** Above is copy and pasteable flask starter code. In your browser go to **    http://0.0.0.0:6969/
+** Above is copy and pasteable flask starter code. In your browser go to **    http://0.0.0.0:8080/
 
 ---
 
@@ -66,10 +66,10 @@ def zack_rules():
     return '<h1> Yo: %s </h1>' % content
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6969, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 ```
 **Above is copy and pasteable example of how you can pass a list of strings into your webpage onto a page named 'zack_rules'.**
-*http://0.0.0.0:6969/zack_rules*
+*http://0.0.0.0:8080/zack_rules*
 
 ---
 <br>
@@ -130,7 +130,7 @@ def word_counter():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6969, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 
 ```
 
