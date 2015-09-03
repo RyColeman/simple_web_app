@@ -5,67 +5,47 @@ Today we are going to train a model, build a web interface that allows people to
 ```
 MyProject/
 |-- my_app/
-|   |-- the_app.py
+|   |-- app.py
 |   |-- build_model.py
 |   |-- data
-|   |   |-- my_data.csv
-|   |   |-- my_model.pkl
-|   |   |-- my_vectorizer.pkl
+|   |   |-- articles.csv
+|   |   |-- model.pkl
+|   |   |-- vectorizer.pkl
 ```
-<br>
+
 ## Step 1: Build your model
-Step 1 should take about *30min–60min*  
 
-1.  Build ANY text classifier model and place it into the **build_model.py** python file.  
-2.  Pickle and export your trained model and vectorizer into your data folder.  
-3. *See below if you want a step by step guide for this*
+***This exercise isn't about model tuning, so just build a basic model and don't worry about tuning it.***
 
-<br>
+1. In `build_model.py`, build a text classifier model using the `articles.csv` dataset. You can use the `body` field to get the text and use it to predict the `section_name`.
+
+    You should save the model as a pickle file. The template for this code is in [build_model.py](my_app/build_model.py).
+
+2. Check that you can reload your model and vectorizer by running these lines of code:
+
+    ```python
+    import cPickle as pickle
+    import pandas as pd
+
+    with open('data/vectorizer.pkl') as f:
+        vectorizer = pickle.load(f)
+    with open('data/model.pkl') as f:
+        model = pickle.load(f)
+
+    df = pd.read_csv('data/articles.csv')
+    X = vectorizer.transform(df['body'])
+    y = df['section_name']
+
+    print "Accuracy:", model.score(X, y)
+    print "Predictions:", model.predict(X)
+    ```
+
 ## Step 2:  Build your site
-Step 2 should take anywhere from 30min–120min  
-1.  Create an the_app.py file in your my_app folder  
 
-```
-MyProject/
-|-- my_app/pytho
-|   |-- **the_app.py**
-|   |-- build_model.py
-|   |-- data
-|   |   |-- my_data.csv
-|   |   |-- my_model.pkl
-|   |   |-- my_vectorizer.pkl
-```
+You can use the [word count form example](examples/example_with_form.py) as a guide.
 
-1.  Build a simple web homepage using flask.
-2.  Once you have setup a working homepage...
-3.  Build a submission_page that has an html form for the user to submit new text data.
-4.  Build a predict_page that processes the user submitted form data, and returns the result of your prediction.  
+1. In the `app.py` file, build a welcome homepage. It should have a link to a `/submit` page.
 
+2. Build the `/submit` page as an html form which accepts text data.
 
----
-
-### Step 1:  Step by step
-
-1. Use the `articles.csv` file in the data folder to create a text classifier.
-
-2. Set your text data column to `X`.
-
-3. Set your label data column to `y`.
-
-2. Initialize a multinomial naive bayes classifier.  
-
-3. Initialize a TFIDF vectorizer.
-
-4. With your TFIDF vectorizer, fit and transform your `X` text data. Name the output `vectorized_X`
-.
-5.  Initialize your MultinomialNB model
-```clf = MultinomialNB()```
-
-6.  Fit your model with the `transformed_X` data, and the `y` labels.  
-
-7.  Export your fitted model using pickle.
-
-8.  Export your fitted vectorizer using pickle.
-
-9.  Take a break.
----
+3. Build the `/predict` page which will display the result of the model prediction.
