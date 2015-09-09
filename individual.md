@@ -19,6 +19,11 @@ MyProject/
 
 1. In `build_model.py`, build a text classifier model using the `articles.csv` dataset. You can use the `body` field to get the text and use it to predict the `section_name`.
 
+    Feel free to choose something different, but here's an option:
+
+        * Use the `TfidfVectorizer` on the `body` field
+        * Use `MultinomialNB` model to predict the `section_name`
+
     You should save the model as a pickle file. The template for this code is in [build_model.py](my_app/build_model.py).
 
 2. Check that you can reload your model and vectorizer by running these lines of code:
