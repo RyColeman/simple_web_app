@@ -11,5 +11,5 @@ Required reading is in the welcome repo.
 ##### Other References
 
 * [API design with Flask](http://blog.luisrei.com/articles/rest.html)
-* [Flask + Bootstrap + Heroku](http://ryaneshea.com/lightweight-python-apps-with-flask-twitter-bootstrap-and-heroku)
+* [Flask + Bootstrap + Heroku](http://blog.shea.io/lightweight-python-apps-with-flask-twitter-bootstrap-and-heroku/)
 * [Flask-restful](http://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful)
