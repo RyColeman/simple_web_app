@@ -11,10 +11,9 @@ MyProject/
 |   |   |-- index.html
 |   |   |-- submit.html
 |   |   |-- predict.html
-|   |-- static
-|   |   |-- model.pkl
 |   |-- data
 |   |   |-- articles.csv
+|   |   |-- model.pkl
 ```
 
 ## Step 1: Build your model
@@ -30,7 +29,7 @@ MyProject/
 
 A stub `build_model.py` is included, note that we have wrapped both the `TfidfVectorizer` and `MultinomialNB` in a single class, and created `sklearn` style methods for fitting and prediction.  This allows us work with only one object, and keeps our interfaces lean and clean.
 
-    You should save the model as a pickle file.  This is python's internal format for saving objects to disk.  Almost all python objects can be pickled, and then reloaded in another python process.  Note though, to reload a pickled object, you *must* import the class defining that object in the process that would like to do the loading.
+You should save the model as a pickle file.  This is python's internal format for saving objects to disk.  Almost all python objects can be pickled, and then reloaded in another python process.  Note though, to reload a pickled object, you *must* import the class defining that object in the process that would like to do the loading.
 
 2. Check that you can reload your model and vectorizer by running these lines of code:
 
@@ -48,7 +47,7 @@ A stub `build_model.py` is included, note that we have wrapped both the `TfidfVe
     print "Predictions:", model.predict(X)
     ```
 
-## Step 2:  Build your site
+## Step 2:  Build Your Site
 
 You can use the [word count form example](examples/example_with_form.py) as a guide.
 
@@ -57,3 +56,11 @@ You can use the [word count form example](examples/example_with_form.py) as a gu
 2. Build the `/submit` page as an html form which accepts text data.
 
 3. Build the `/predict` page which will display the result of the model prediction.
+
+## Extra Credit:  Submit Text with Ajax
+
+In the previous solution the app needs to load a new page once the text is submitted, you can avoid this and provide a smoother experience with some javascript.  Re-write the necessary pieces of the previous app to submit the text using jquery to
+
+  - Submit a request containing the text using `$.ajax`.
+  - Respond to the request in Flask, sending back json containing the model's prediction.
+  - Use javascript to write the model's prediction into the html when the ajax request is completed.

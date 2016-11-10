@@ -1,4 +1,6 @@
-Before we do anything, we must install flask with `pip install flask`  
+Individual and pair sprints for the flask and data-products DSI lesson.
+
+Before we do anything, you must install flask with `pip install flask`.
 
 ##### Optional Reading
 
