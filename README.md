@@ -1,4 +1,9 @@
-Before we do anything, we must install flask with `pip install flask`  
+Check to see if Flask is already installed as part of your Anaconda installation:  
+`$ which flask`  
+If it isn't, use conda to install flask:  
+`$ conda install flask`  
+As a last resort:  
+`$ pip install flask`    
 
 ##### Optional Reading
 
