@@ -1,6 +1,11 @@
 Individual and pair sprints for the flask and data-products DSI lesson.
 
-Before we do anything, you must install flask with `pip install flask`.
+Before we do anything check to see if Flask is already installed as part of your Anaconda installation:  
+`$ flask --version`  
+If it isn't, use conda to install flask:  
+`$ conda install flask`  
+As a last resort:  
+`$ pip install flask`    
 
 ##### Optional Reading
 
