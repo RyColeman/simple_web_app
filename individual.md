@@ -34,17 +34,17 @@ You should save the model as a pickle file.  This is python's internal format fo
 2. Check that you can reload your model and vectorizer by running these lines of code:
 
     ```python
-    import cPickle as pickle
+    import pickle
     import pandas as pd
     from build_model import TextClassifier, get_data
 
-    with open('data/model.pkl') as f:
+    with open('data/model.pkl', 'wb') as f:
         model = pickle.load(f)
 
     X, y = get_data('data/articles.csv')
 
-    print "Accuracy:", model.score(X, y)
-    print "Predictions:", model.predict(X)
+    print("Accuracy:", model.score(X, y))
+    print("Predictions:", model.predict(X))
     ```
 
 ## Step 2:  Build Your Site
