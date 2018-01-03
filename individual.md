@@ -38,7 +38,7 @@ You should save the model as a pickle file.  This is python's internal format fo
     import pandas as pd
     from build_model import TextClassifier, get_data
 
-    with open('data/model.pkl', 'wb') as f:
+    with open('data/model.pkl', 'rb') as f:
         model = pickle.load(f)
 
     X, y = get_data('data/articles.csv')
