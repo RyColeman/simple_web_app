@@ -5,7 +5,7 @@ text classification model.
 When run as a module, this will load a csv dataset, train a classification
 model, and then pickle the resulting model object to disk.
 """
-import cPickle as pickle
+import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -68,5 +68,5 @@ if __name__ == '__main__':
     X, y = get_data("data/articles.csv")
     tc = TextClassifier()
     tc.fit(X, y)
-    with open('static/model.pkl', 'w') as f:
+    with open('static/model.pkl', 'wb') as f:
         pickle.dump(tc, f)
